@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from './components/Button.jsx'
-import Cartes from "./components/Carte.jsx";
+import Cartes from "./components/Cartes.jsx";
 import Game from './components/Game.jsx'
 
 const cardArray = [
