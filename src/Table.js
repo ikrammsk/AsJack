@@ -30,7 +30,7 @@ class Table extends React.Component {
       nameOfWinner: ""
     }
   }
-// Distribution aléatoire de cartes entre 0 à 53
+  // Distribution aléatoire de cartes entre 0 à 53
   rndCarte() {
 
     rndNumTemp = Math.floor(Math.random() * 53);
@@ -41,7 +41,7 @@ class Table extends React.Component {
 
     return rndCarteTemp
   }
-// 
+  // 
   onClickStop = () => {
     const cardSelectedDealer = this.rndCarte()
     const cardSelectedDealer2 = this.rndCarte()
@@ -65,9 +65,9 @@ class Table extends React.Component {
       cardsDealer.push(cardSelectedDealer)
 
       dealerValue += valueCarteDealer
-      
+
       // calcul des points pour définir gagnant ou perdant 
-      
+
       if (dealerValue > 21) {
         endGameAndWinner = {
           endGame: true,
@@ -141,7 +141,51 @@ class Table extends React.Component {
       playerCardList: firstTwoCardsPlayer,
       startGame: true
     })
+    this.renderGame = this.renderGame.bind(this)
   }
+
+  renderGame() {
+    return(
+    <div>
+      <div className="playGame">
+        <div style={{ height: '100vh', position: 'relative' }}>
+          <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
+          <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
+          {this.state.endGame && (<div className='winlost'>
+            <h1>Winner is {this.state.nameOfWinner}</h1>
+          </div>)}
+          <Cartes key={"player"} cardList={this.state.playerCardList} />
+          {/* Boutons */}
+          <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
+            {/* fonctionalité bouton distribution de cartes */}
+            <div className="d-grid gap-2">
+              <Button
+                onClick={this.onClickGive}
+                classe="btn btn-outline-warning btn-lg rounded-pill"
+                color="white"
+                bcolor="#0d6efd"
+                name="Give"
+              />
+            </div>
+            <div>
+            </div>
+            {/* fonctionalité bouton arret distribution de cartes stop jeu */}
+            <div className="d-grid gap-2">
+              <Button
+                onClick={this.onClickStop}
+                classe="btn btn-outline-warning btn-lg rounded-pill"
+                color="white"
+                bcolor="#dc3545"
+                name="Stop"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    )
+  }
+
   // fonctionalité début de jeu et indication de gagnant ou perdant du jeu
   render() {
     if (this.state.startGame === false) {
@@ -151,43 +195,7 @@ class Table extends React.Component {
     } else {
       return (
         <div>
-          <div className="playGame">
-            <div style={{ height: '100vh', position: 'relative' }}>
-              <h1 style={{ color: '#feb236', textAlign: 'center' }}>Black Jack</h1>
-              <Cartes key={"dealer"} cardList={this.state.dealerCardList} />
-              {this.state.endGame && (<div className='winlost'>
-                <h1>Winner is {this.state.nameOfWinner}</h1>
-              </div>)}
-              <Cartes key={"player"} cardList={this.state.playerCardList} />
-
-              {/* Boutons */}
-              <div style={{ bottom: '20px', position: 'absolute' }} className="row col-6 offset-3 flex d-flex justify-content-between">
-                {/* fonctionalité bouton distribution de cartes */}
-                <div className="d-grid gap-2">
-                  <Button
-                    onClick={this.onClickGive}
-                    classe="btn btn-outline-warning btn-lg rounded-pill"
-                    color="white"
-                    bcolor="#0d6efd"
-                    name="Give"
-                  />
-                </div>
-                <div>
-                </div>
-                {/* fonctionalité bouton arret distribution de cartes stop jeu */}
-                <div className="d-grid gap-2">
-                  <Button
-                    onClick={this.onClickStop}
-                    classe="btn btn-outline-warning btn-lg rounded-pill"
-                    color="white"
-                    bcolor="#dc3545"
-                    name="Stop"
-                  />
-                </div>
-
-              </div>
-            </div>
-          </div>
+        {this.renderGame()}
         </div>
       )
     }
