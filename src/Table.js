@@ -119,13 +119,13 @@ class Table extends React.Component {
     })
   }
 
-  transformCardIntoInt(cardValue) {
-    if (cardValue === "K" || cardValue === "Q" || cardValue === "J" || cardValue === "A" || cardValue === "0") {
-      cardValue = "10"
-    }
+  // transformCardIntoInt(cardValue) {
+  //   if (cardValue === "K" || cardValue === "Q" || cardValue === "J" || cardValue === "A" || cardValue === "0") {
+  //     cardValue = "10"
+  //   }
 
-    return parseInt(cardValue)
-  }
+  //   return parseInt(cardValue)
+  // }
 
   startGame = () => {
     const cardSelected = this.rndCarte()
@@ -179,7 +179,7 @@ class Table extends React.Component {
                 bcolor="#dc3545"
                 name="Stop"
                 />
-              <cardUtils></cardUtils>
+            
             </div>
           </div>
         </div>
